@@ -1,0 +1,22 @@
+--- drivers/net/ethernet/marvell/sky2.c
++++ drivers/net/ethernet/marvell/sky2.c
+@@ -5132,7 +5223,18 @@ static int sky2_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		err = -ENOMEM;
+ 		goto err_out_free_pci;
+ 	}
+-
++#ifdef CONFIG_X86_PS4
++	if (pdev->vendor == PCI_VENDOR_ID_SONY &&
++	    apcie_assign_irqs(pdev, 1) > 0) {
++		err = sky2_test_msi(hw);
++		if (err) {
++			apcie_free_irqs(pdev->irq, 1);
++			/* PS4 requires MSI, so if it fails, bail out. */
++			goto err_out_free_netdev;
++		}
++		hw->flags |= SKY2_HW_USE_AEOLIA_MSI;
++	} else
++#endif
+ 	if (!disable_msi && pci_enable_msi(pdev) == 0) {
+ 		err = sky2_test_msi(hw);
+ 		if (err) {
