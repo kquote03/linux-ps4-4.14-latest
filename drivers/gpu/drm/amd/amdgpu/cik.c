@@ -2059,7 +2059,7 @@ static int cik_common_early_init(void *handle)
 					AMD_PG_SUPPORT_RLC_SMU_HS |
 					AMD_PG_SUPPORT_SAMU |*/
 				0;
-			adev->external_rev_id = adev->rev_id + 0x61;
+			adev->external_rev_id = adev->rev_id + 0x71;
 			break;
 	default:
 		/* FIXME: not supported yet */
