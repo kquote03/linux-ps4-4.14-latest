@@ -1,0 +1,25 @@
+From 538e75632e3b6a05b81b44be29efd6f58b62d05e Mon Sep 17 00:00:00 2001
+From: Ps3ita Team <ps3ita-team@ps3ita.it>
+Date: Wed, 13 Feb 2019 14:09:55 +0100
+Subject: [PATCH] Also on liverpool num_crtc is 6
+
+---
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+index 682dfb837446d1..8cba71b2b5fbb4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+@@ -449,9 +449,9 @@ static int dce_v8_0_get_num_crtc(struct amdgpu_device *adev)
+ 	case CHIP_BONAIRE:
+ 	case CHIP_HAWAII:
+ 	case CHIP_GLADIUS:
++	case CHIP_LIVERPOOL:
+ 		num_crtc = 6;
+ 		break;
+-	case CHIP_LIVERPOOL:
+ 	case CHIP_KAVERI:
+ 		num_crtc = 4;
+ 		break;
+
